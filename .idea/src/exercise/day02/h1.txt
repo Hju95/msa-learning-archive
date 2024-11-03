@@ -1,0 +1,26 @@
+    1  whoami
+    2  history
+    3  mkdir ~/work
+    4  cd ~/work
+    5  ssh-keygen
+    6  cat ~/.ssh/id_rsa.pub
+    7  git config --global user.name "Bard K. Roh"
+    8  git config --global user.email bardroh@weable.ai
+    9  git config --global --list
+   10  git clone git@github.com:weable-kosa/kosa-msa-2024-2nd.git
+   11  ls
+   12  cd kosa-msa-2024-2nd/
+   13  clear
+   14  ls
+   15  cd src
+   16  ls
+   17  cd exercise/
+   18  ls
+   19  cd ba
+   20  cd bardroh/
+   21  ls
+   22  cd day02
+   23  clear
+   24  histroy
+   25  history
+   26  history > h1.txt

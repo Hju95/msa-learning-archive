@@ -1,0 +1,57 @@
+@startuml Silcon Sandwich
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_TOP_DOWN()
+
+Person(iOS, "iOS")
+Person(Android, "Android")
+Person(JSON, "JSON")
+Person(Web, "Web")
+System_Boundary(BFF, "API Layer") {
+    Container(API_Layer, "API Gateway", "인증, 인가, CORS, SSL")
+}
+Rel(iOS, API_Layer, "https")
+Rel(Android, API_Layer, "https")
+Rel(JSON, API_Layer, "https")
+Rel(Web, API_Layer, "https")
+
+System_Boundary(BackEnd, "실리콘 샌드위치 백엔드 주문 시스템") {
+    Container_Boundary(Goods, "상품")    {
+        Component(Order, "주문")
+        Component(Pay, "결제")
+    }
+    Container_Boundary(Common, "공통") {
+        Component(CommonRecipes, "레시피")
+        Component(CommonStock, "재고")
+        Component(CommonPromotion, "프로모션")
+        Component(CommonLocation, "위치")
+    }
+    Container_Boundary(Local, "로컬") {
+        Component(LocalRecipes, "레시피")
+        Component(LocalStock, "재고")
+        Component(LocalPromotion, "프로모션")
+        Component(LocalLocation, "위치")
+    }
+    Container_Boundary(Delivery, "배송") {
+        Component(Address, "주소")
+    }
+    Rel(Order, CommonRecipes, "")
+    Rel(Order, CommonStock, "")
+    Rel(Order, LocalRecipes, "")
+    Rel(Order, LocalStock, "")
+
+    Rel(Pay, CommonPromotion, "")
+    Rel(Pay, LocalPromotion, "")
+
+    Rel(Address, CommonLocation, "")
+    Rel(Address, LocalLocation, "")
+}
+Rel_D(BFF, BackEnd, "Uses", "http")
+
+ContainerDb(MainDB, "Database", "MySQL", "메인 공통 데이터베이스")
+Rel_R(BackEnd, MainDB, "")
+ContainerDb(LocalDB, "Database", "MySQL", "로컬 데이터베이스")
+Rel_L(Local, LocalDB, "")
+
+@enduml

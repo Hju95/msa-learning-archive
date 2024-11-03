@@ -1,0 +1,2 @@
+docker로 볼륨을 붙여서 joomla + mysql을 실행한다(실습) -> 다시 시작시 재설치 하지 않음 확인
+docker로 볼륨을 붙여서 drupal + postgres를 실행한다(실습) -> 다시 시작시 재설치 하지 않음 확인

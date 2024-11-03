@@ -1,0 +1,5 @@
+docker-compose로 drupal을 실행한다.
+docker-compose로 joomla를 실행한다.
+
+docker compose up으로 실행하여 웹에 접속하여 CMS를 설치한 후, docker compose down으로 컨테이너를 삭제한다.
+다시 docker compose up으로 실행했을 때 재설치하지 않아야 한다.

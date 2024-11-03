@@ -1,0 +1,3 @@
+jupyter notebook을 Dockerfile로 생성하고 k8s에 배포한다. Service는 NodePort를 사용한다.
+wordpress를 k8s에 배포한다(+mysql). Service는 LoadBalancer를 사용한다.
+drupal을 k8s에 배포한다(+postgres). Service는 LoadBalancer를 사용한다.

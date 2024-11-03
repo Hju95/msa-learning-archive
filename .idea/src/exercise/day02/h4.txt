@@ -1,0 +1,205 @@
+    1  whoami
+    2  history
+    3  mkdir ~/work
+    4  cd ~/work
+    5  ssh-keygen
+    6  cat ~/.ssh/id_rsa.pub
+    7  git config --global user.name "Bard K. Roh"
+    8  git config --global user.email bardroh@weable.ai
+    9  git config --global --list
+   10  git clone git@github.com:weable-kosa/kosa-msa-2024-2nd.git
+   11  ls
+   12  cd kosa-msa-2024-2nd/
+   13  clear
+   14  ls
+   15  cd src
+   16  ls
+   17  cd exercise/
+   18  ls
+   19  cd ba
+   20  cd bardroh/
+   21  ls
+   22  cd day02
+   23  clear
+   24  histroy
+   25  history
+   26  history > h1.txt
+   27  git add h1.txt
+   28  git commit -m 'add history'
+   29  git pull
+   30  git push
+   31  cat ~/.ssh/id_rsa.pub 
+   32  clear
+   33  ls
+   34  clear
+   35  ls
+   36  whoami
+   37  clear
+   38  curl -fsSL https://get.docker.com -o install-docker.sh
+   39  ls
+   40  cat install-docker.sh
+   41  clear
+   42  sh install-docker.sh --dry-run
+   43  sudo sh install-docker.sh
+   44  clear
+   45  docker -v
+   46  docker ps
+   47  docker -v
+   48  docker run -it centos:7
+   49  ckear
+   50  clear
+   51  rpm
+   52  yum
+   53  apt-get
+   54  clear
+   55  cat /etc/*release*
+   56  docker images
+   57  docker pull ubuntu:20.04
+   58  docker images
+   59  ckear
+   60  clear
+   61  docker create -it --name myubuntu ubuntu:20.04 
+   62  docker start myubuntu
+   63  docker attach myubuntu
+   64  docker start myubuntu
+   65  docker attach myubuntu
+   66  docker ps
+   67  clear
+   68  docker ps -a
+   69  docker inspect myubuntu
+   70  docker ps -a
+   71  clear
+   72  docker run -i -t ubuntu:20.04 echo hello world!
+   73  docker ps -a
+   74  docker rename myubuntu renamed
+   75  docker ps -a
+   76  docker rename renamed myubuntu
+   77  docker ps -a
+   78  docker rm -f myubuntu
+   79  docker ps -a
+   80  docker container prune
+   81  clear
+   82  docker ps -a 
+   83  docker ps -a -q
+   84  docker rm -f $(docker ps -a -q)
+   85  docker ps -a -q
+   86  docker ps -a 
+   87  docker run -it --name network_test ubuntu:14.04
+   88  clear
+   89  docker ps
+   90  docker run -it --name mywebserver -p 80:80 ubuntu:14.04
+   91  docker ps -a
+   92  docker rm -f $(docker ps -a -q)
+   93  docker ps -a
+   94  \
+   95  docker ps -a
+   96  docker run -d --name wordpressdb -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=wordpress mysql:5.7
+   97  docker ps -a
+   98  docker run -d -e WORDPRESS_DB_USER=root -e  WORDPRESS_DB_PASSWORD=password --name wordpress --link wordpressdb:mysql -p 80:80 wordpress:5
+   99  docker ps
+  100  clear
+  101  cd work/
+  102  ls
+  103  history
+  104  ls
+  105  cd kosa-msa-2024-2nd/
+  106  ls
+  107  cd src
+  108  ls
+  109  cd exercise/
+  110  ls
+  111  cd ba
+  112  cd bardroh/
+  113  ls
+  114  cd day0
+  115  cd day02
+  116  ls
+  117  history > h2.txt
+  118  git add h2.txt 
+  119  git commit -m 'add history h2.txt'
+  120  git pull
+  121  git config pull.rebase false
+  122  git pull
+  123  git push
+  124  clear
+  125  cd
+  126  docker rm -f $(docker ps -a -q)
+  127  docker ps -a
+  128  history
+  129  docker run -d --name wordpressdb -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=wordpress mysql:5.7
+  130  docker ps
+  131  docker run -d -e WORDPRESS_DB_USER=root -e  WORDPRESS_DB_PASSWORD=password --name wordpress --link wordpressdb:mysql -p 80:80 wordpress:5
+  132  docker ps
+  133  clear
+  134  docker rm -f $(docker ps -a -q)
+  135  docker ps -a
+  136  docker run -d --name wordpressdb_hostvolume -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=wordpress -v /home/wordpress_db:/var/lib/mysql mysql:5.7
+  137  docker ps
+  138  docker logs wordpressdb_hostvolume
+  139  ls /home/wordpress_db/
+  140  docker run -d -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=password --name wordpress_hostvolume --link wordpressdb_hostvolume:mysql -p 80:80 wordpress:5
+  141  docker ps
+  142  docker logs wordpress_hostvolume
+  143  docker rm -f $(docker ps -a -q)
+  144  docker ps -a
+  145  history
+  146  ls /home/wordpress_db/
+  147  clear
+  148  docker run -d --name wordpressdb_hostvolume -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=wordpress -v /home/wordpress_db:/var/lib/mysql mysql:5.7
+  149  docker logs wordpressdb_hostvolume
+  150  history
+  151  docker run -d -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=password --name wordpress_hostvolume --link wordpressdb_hostvolume:mysql -p 80:80 wordpress:5
+  152  docker ps
+  153  docker logs wordpress_hostvolume
+  154  clear
+  155  cd work/
+  156  ls
+  157  cd kosa-msa-2024-2nd/
+  158  ls
+  159  cd src
+  160  clear
+  161  ls
+  162  cd exercise/
+  163  ls
+  164  cd bardroh/
+  165  ls
+  166  cd day02/
+  167  ls
+  168  history > h3.txt
+  169  git add h3.txt 
+  170  git commit
+  171  git push
+  172  clear
+  173  docker ps -a
+  174  docker rm -f $(docker ps -a -q)
+  175  clear
+  176  ls
+  177  docker run -d --name joomla_db -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=joomla_db -v /home/joomla_db:/var/lib/mysql mysql:5.7
+  178  docker ps
+  179  docker logs  joomla_db
+  180  ls /home/joomla_db/
+  181  docker run -d --name joomla -p 80:80 --link joomla_db:mysql -e JOOMLA_DB_HOST=joomla_db -e JOOMLA_DB_USER=root -e JOOMLA_DB_PASSWORD=password -e JOOMLA_DB_NAME=joomla_db -v /home/joomla_web:/var/www/html joomla:4.4
+  182  docker ps
+  183  docker logs joomla
+  184  ls /home/joomla_web/
+  185  vi /home/joomla_web/configuration.php 
+  186  clear
+  187  ls
+  188  docker rm -f $(docker ps -a -q)
+  189  docker ps -a
+  190  ls /home/joomla_db/
+  191  ls /home/joomla_web/
+  192  docker run -d --name joomla_db -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=joomla_db -v /home/joomla_db:/var/lib/mysql mysql:5.7
+  193  docker logs joomla_db
+  194  docker run -d --name joomla -p 80:80 --link joomla_db:mysql -e JOOMLA_DB_HOST=joomla_db -e JOOMLA_DB_USER=root -e JOOMLA_DB_PASSWORD=password -e JOOMLA_DB_NAME=joomla_db -v /home/joomla_web:/var/www/html joomla:4.4
+  195  docker ps
+  196  docker logs joomla
+  197  clear
+  198  ls
+  199  docker ps
+  200  docker exec -it joomla /bin/bash
+  201  docker ps
+  202  cear
+  203  clear
+  204  ls
+  205  history > h4.txt

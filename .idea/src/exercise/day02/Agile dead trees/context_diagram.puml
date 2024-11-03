@@ -1,0 +1,90 @@
+@startuml Agile dead trees
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_TOP_DOWN()
+
+Person(Employee, "출판사 직원")
+Person(Author, "저자")
+Person(Customer, "고객")
+System_Boundary(PresentationLayer, "Presentation Layer") {
+    Container(CustomerFrontEnd, "Customer FrontEnd")
+    Container(OrdersCMS, "Orders CMS")
+    Container(BookStoreCMS, "BookStore CMS")
+    Container(Editorial, "Editorial")
+}
+Rel(Employee, OrdersCMS, "")
+Rel(Employee, BookStoreCMS, "")
+Rel(Employee, Editorial, "")
+Rel(Author, Editorial, "")
+Rel(Customer, CustomerFrontEnd, "")
+
+System_Boundary(NetworkLayer, "Network Layer") {
+    Container(NginxProxy, "Nginx Proxy")
+}
+Rel(OrdersCMS, NginxProxy, "")
+Rel(BookStoreCMS, NginxProxy, "")
+Rel(Editorial, NginxProxy, "")
+Rel(CustomerFrontEnd, NginxProxy, "")
+
+System_Boundary(LogicLayer, "Logic Layer") {
+    Container(PublicClientsLB, "Public Clients LB")
+    Container(EmployeeAuthorsLB, "Employee / Authors LB")
+
+    Container(CatalogMS, "Catalog", "Microservice")
+    Container(BookLock, "Book-Lock", "Kafka")
+    Container(Books, "Books", "Kafka")
+    Container(Orders, "Orders", "Kafka")
+    Container(OrdersMS, "Orders", "Microservice")
+    Container(UsersMS, "Users", "Microservice")
+    Container(BookStoreMS, "Book Store", "Microservice")
+    Container(EmployeesAdminMS, "Employees Admin", "Microservice")
+    Container(AuthorsCMSMS, "Authors CMS", "Microservice")
+    Container(Notifications, "Notifications", "Kafka")
+    ContainerDb(EditorialStorage, "Editorial Storage", "CouchBase")
+    Container(NotificationCenterMS, "Notification Center", "Microservice")
+}
+System_Boundary(DataStorageLayer, "Data Storage Layer") {
+   ContainerDb(CatalogStorage, "Catalog Storage", "CouchBase")
+   ContainerDb(OrdersStorage, "Orders Storage", "PostgreSQL")
+   ContainerDb(UsersStorage, "Users Storage", "PostgreSQL")
+   ContainerDb(FileStorage, "File Storage", "Google Cloud Storage")
+   ContainerDb(BookStorage, "Book Storage", "PostgreSQL")
+   ContainerDb(NotificationStorage, "Notification Storage", "CouchBase")
+}
+
+Rel(NginxProxy, PublicClientsLB, "")
+Rel(NginxProxy, EmployeeAuthorsLB, "")
+
+Rel(PublicClientsLB, CatalogMS, "")
+Rel(PublicClientsLB, OrdersMS, "")
+
+Rel(EmployeeAuthorsLB, EmployeesAdminMS, "")
+Rel(EmployeeAuthorsLB, AuthorsCMSMS, "")
+
+Rel(AuthorsCMSMS, EditorialStorage, "")
+Rel(AuthorsCMSMS, Notifications, "")
+
+Rel(EmployeesAdminMS, EditorialStorage, "")
+Rel(EmployeesAdminMS, Notifications, "")
+Rel(EmployeesAdminMS, BookStoreCMS, "")
+Rel(EmployeesAdminMS, OrdersMS, "")
+
+Rel(OrdersMS, BookLock, "")
+Rel(OrdersMS, OrdersStorage, "")
+Rel(OrdersMS, Orders, "")
+Rel(OrdersMS, BookStoreMS, "")
+Rel(OrdersMS, UsersMS, "")
+
+Rel(BookStoreMS, BookStorage, "")
+Rel(BookStoreMS, FileStorage, "")
+Rel(BookStoreMS, Books, "")
+
+Rel(CatalogMS, CatalogStorage, "")
+
+Rel(UsersMS, Books, "")
+
+Rel(Notifications, NotificationCenterMS, "")
+Rel(NotificationCenterMS, NotificationStorage, "")
+
+@enduml

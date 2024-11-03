@@ -1,0 +1,48 @@
+    1  clear
+    2  history
+    3  clear
+    4  pwd
+    5  mkdir work
+    6  cd work
+    7  ssh-keygen
+    8  clear
+    9  cat ~/.ssh/id_ed25519.pub 
+   10  git config --global user.name "Bard K. Roh"
+   11  git config --global user.email bardroh@weable.ai
+   12  git config --global --list
+   13  git clone git@github.com:weable-kosa/kosa-msa-2024-2nd.git
+   14  ls
+   15  git clone git@github.com:weable-kosa/kosa-msa-2024.git
+   16  clear
+   17  gcloud container clusters get-credentials myk8s --zone asia-northeast3-a --project cogent-tangent-440203-i0
+   18  kubectl get nodes
+   19  kubectl get nodes -o wide
+   20  cd
+   21  clear
+   22  ls -la
+   23  cd .kube
+   24  clear
+   25  ls
+   26  vi config
+   27  kubectl get nodes
+   28  kubectl get pods --all-namespaces
+   29  ckear
+   30  clear
+   31  cd w
+   32  cd ~/work/
+   33  ls
+   34  cd kosa-msa-2024-2nd/
+   35  clear
+   36  ls
+   37  cd src
+   38  ls
+   39  cd exercise/
+   40  cd ba
+   41  cd bardroh/
+   42  clear
+   43  ls
+   44  mkdir day04
+   45  cd day04
+   46  history
+   47  clear
+   48  history > h1.txt

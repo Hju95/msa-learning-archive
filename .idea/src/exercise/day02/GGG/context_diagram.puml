@@ -1,0 +1,55 @@
+@startuml GGG
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_TOP_DOWN()
+
+Person(Bidder, "입찰자", "온라인 경매에 참가한 수많은 입찰자")
+Person(Auctioneer, "경매인", "경매 당하는 사람")
+Person(Streamer, "스트리머", "입찰자에게 동영상 및 입찰 스트리밍을 담당하는 서비스")
+System_Boundary(BFF, "API Layer") {
+    Container(API_Layer, "API Gateway", "모든 서비스의 진입점")
+}
+BiRel(Bidder, API_Layer, "")
+BiRel(Auctioneer, API_Layer, "")
+BiRel(Streamer, API_Layer, "")
+
+System_Boundary(BackEnd, "GGG 백엔드 경매 시스템") {
+    Container_Boundary(AuctionSession, "Auction  Session")    {
+    }
+    Container_Boundary(AuctioneerCapture, "Auctioneer Capture")    {
+    }
+    Container_Boundary(BidCapture, "Bid Capture")    {
+    }
+    Container_Boundary(BidTracker, "Bid Tracker")    {
+    }
+    ContainerDb(BidTrackerDB, "Database", "MySQL", "")
+    Rel(BidTracker, BidTrackerDB, "")
+    Container_Boundary(BidStreamer, "Bid Streamer")    {
+    }
+    ContainerDb(BidStreamerDB, "Database", "MySQL", "")
+    Rel(BidStreamer, BidStreamerDB, "")
+    Container_Boundary(VideoStreamer, "Video Streamer")    {
+    }
+    Container_Boundary(VideoCapture, "Video Capture")    {
+    }
+    Container_Boundary(Payment, "Payment")    {
+    }
+    ContainerDb(PaymentDB, "Database", "MySQL", "")
+    Rel(Payment, PaymentDB, "Uses", "HTTPS")
+}
+
+BiRel(API_Layer, AuctionSession, "")
+Rel(AuctionSession, BidTracker, "")
+Rel(AuctioneerCapture, BidTracker, "")
+Rel(API_Layer, AuctioneerCapture, "")
+Rel(API_Layer, BidCapture, "")
+Rel(BidStreamer, API_Layer, "")
+Rel(VideoStreamer, API_Layer, "")
+Rel(API_Layer, VideoCapture, "")
+Rel(BidCapture, BidStreamer, "")
+Rel(BidCapture, BidTracker, "")
+Rel(VideoCapture, VideoStreamer, "")
+Rel(BidTracker, Payment, "")
+
+@enduml

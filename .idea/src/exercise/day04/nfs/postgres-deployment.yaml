@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres 
+  labels:
+    app: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - image: postgres:12
+          name: postgres
+          env:
+            - name: POSTGRES_DB 
+              value: drupal
+            - name: POSTGRES_USER
+              value: user
+            - name: POSTGRES_PASSWORD
+              value: password
+          ports:
+            - containerPort: 5432
+              name: postgres
+          volumeMounts:
+            - name: postgres-nfs-volume
+              mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: postgres-nfs-volume
+        nfs: 
+          path: /postgres 
+          server: nfs-service.default.svc.cluster.local  

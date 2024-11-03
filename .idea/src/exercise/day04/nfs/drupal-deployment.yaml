@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+
+kind: Deployment
+metadata:
+  name: drupal
+  labels:
+    app: drupal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: drupal
+  template:
+    metadata:
+      labels:
+        app: drupal
+    spec:
+      initContainers:
+        - name: init-sites-volume
+          image: drupal:9
+          command: ['/bin/bash', '-c']
+          args: ['cp -r /var/www/html/sites/ /data/; chown www-data:www-data /data/ -R']
+          volumeMounts:
+          - mountPath: /data
+            name: vol-drupal    
+      containers:
+        - image: drupal:9
+          name: drupal
+          ports:
+            - containerPort: 80
+              name: drupal
+          volumeMounts:
+            - name: modules
+              mountPath: /var/www/html/modules
+            - name: profiles
+              mountPath: /var/www/html/profiles
+            - name: sites
+              mountPath: /var/www/html/sites
+            - name: themes
+              mountPath: /var/www/html/themes
+      volumes:
+      - name: vol-drupal
+        nfs: 
+          path: /drupal
+          server: nfs-service.default.svc.cluster.local  
+      - name: modules
+        nfs: 
+          path: /drupal/modules
+          server: nfs-service.default.svc.cluster.local 
+      - name: profiles
+        nfs: 
+          path: /drupal/profiles
+          server: nfs-service.default.svc.cluster.local 
+      - name: sites
+        nfs: 
+          path: /drupal/sites
+          server: nfs-service.default.svc.cluster.local 
+      - name: themes
+        nfs: 
+          path: /drupal/themes
+          server: nfs-service.default.svc.cluster.local 
+

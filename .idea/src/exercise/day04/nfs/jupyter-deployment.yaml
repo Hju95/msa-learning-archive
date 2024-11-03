@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jupyter 
+  labels:
+    app: jupyter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jupyter
+  template:
+    metadata:
+      labels:
+        app: jupyter
+    spec:
+      containers:
+        - image: bardroh/myjupyter:1.0
+          name: jupyter
+          ports:
+            - containerPort: 8888 
+              name: jupyter
+          volumeMounts:
+            - name: jupyter-nfs-volume
+              mountPath: /notebooks
+      volumes:
+      - name: jupyter-nfs-volume
+        nfs: 
+          path: /jupyter
+          server: nfs-service.default.svc.cluster.local  

@@ -1,0 +1,193 @@
+    1  clear
+    2  history
+    3  clear
+    4  pwd
+    5  mkdir work
+    6  cd work
+    7  ssh-keygen
+    8  clear
+    9  cat ~/.ssh/id_ed25519.pub 
+   10  git config --global user.name "Bard K. Roh"
+   11  git config --global user.email bardroh@weable.ai
+   12  git config --global --list
+   13  git clone git@github.com:weable-kosa/kosa-msa-2024-2nd.git
+   14  ls
+   15  git clone git@github.com:weable-kosa/kosa-msa-2024.git
+   16  clear
+   17  gcloud container clusters get-credentials myk8s --zone asia-northeast3-a --project cogent-tangent-440203-i0
+   18  kubectl get nodes
+   19  kubectl get nodes -o wide
+   20  cd
+   21  clear
+   22  ls -la
+   23  cd .kube
+   24  clear
+   25  ls
+   26  vi config
+   27  kubectl get nodes
+   28  kubectl get pods --all-namespaces
+   29  ckear
+   30  clear
+   31  cd w
+   32  cd ~/work/
+   33  ls
+   34  cd kosa-msa-2024-2nd/
+   35  clear
+   36  ls
+   37  cd src
+   38  ls
+   39  cd exercise/
+   40  cd ba
+   41  cd bardroh/
+   42  clear
+   43  ls
+   44  mkdir day04
+   45  cd day04
+   46  history
+   47  clear
+   48  history > h1.txt
+   49  git add h1.txt 
+   50  git commit
+   51  git push
+   52  git pull
+   53  git config pull.rebase false
+   54  git pull
+   55  git push
+   56  clear
+   57  cd
+   58  kubectl get pods
+   59  kubectl get nodes
+   60  kubectl get services
+   61  kubectl get pods -n kube-system
+   62  clear
+   63  kubectl get rs --all-namespaces
+   64  kubectl get deploy --all-namespaces
+   65  clear
+   66  kubectl get svc --all-namespaces
+   67  kubectl run nginx_pod  --image=nginx:1.11
+   68  kubectl run nginx-pod  --image=nginx:1.11
+   69  clear
+   70  kubectl get pods
+   71  kubectl get pods -o wide
+   72  kubectl create deployment nginx-deploy --image=nginx:1.12
+   73  clear
+   74  kubectl get deploy
+   75  kubectl get deploy -o wide
+   76  kubectl get rs 
+   77  kubectl get pods
+   78  kubectl get pods -o wide
+   79  clear
+   80  kubectl expose pod nginx-pod --name nginx-service --port=80 --type=LoadBalancer
+   81  kubectl get svc
+   82  kubectl get pods -o wide
+   83  kubectl get svc
+   84  clear
+   85  kubectl expose pod nginx-pod --name nginx-service --port=80 --type=LoadBalancer --dry-run=client –o yaml
+   86  kubectl expose pod nginx-pod --name nginx-service --port=80 --type=LoadBalancer --dry-run=client -o yaml
+   87  clear
+   88  kubectl expose pod nginx-pod --name nginx-service --port=80 --type=LoadBalancer --dry-run=client -o yaml
+   89  clear
+   90  kubectl expose pod nginx-pod --name nginx-service --port=80 --type=LoadBalancer --dry-run=client -o yaml > nginx-service.yaml
+   91  vi nginx-service.yaml 
+   92  history
+   93  clear
+   94  kubectl create deployment nginx-deploy --image=nginx:1.12 --dry-run=client -o yaml
+   95  clear
+   96  kubectl create deployment nginx-deploy --image=nginx:1.12 --dry-run=client -o yaml > nginx-deploy.yaml
+   97  vi nginx-deploy.yaml 
+   98  clear
+   99  ls
+  100  clear
+  101  kubectl get svc
+  102  kubectl delete svc nginx-service
+  103  kubectl get svc
+  104  kubectl get deploy
+  105  kubectl delete deploy nginx-deploy
+  106  kubectl get pods
+  107  kubectl delete pod nginx=pod
+  108  kubectl delete pod nginx-pod
+  109  clear
+  110  kubectl get pods,rs,deploy,svc
+  111  ls *.yaml
+  112  kubectl get rs --all-namespaces
+  113  vi nginx-deploy.yaml 
+  114  clear
+  115  kubectl apply -f nginx-deploy.yaml 
+  116  kubectl get pods
+  117  kubectl get pods =o wide
+  118  kubectl get pods -o wide
+  119  clear
+  120  ls
+  121  vi nginx-deploy.yaml 
+  122  kubectl apply -f nginx-deploy.yaml 
+  123  kubectl get pods
+  124  vi nginx-deploy.yaml 
+  125  kubectl apply -f nginx-deploy.yaml 
+  126  kubectl get pods
+  127  clear
+  128  kubectl get pods
+  129  kubectl delete pod nginx-deploy-854b9d5bdb-qlv8s
+  130  kubectl get pods
+  131  clear
+  132  ls -la
+  133  ckear
+  134  clear
+  135  ls *.yaml
+  136  kubectl apply -f nginx-deploy.yaml 
+  137  kubectl delete -f nginx-deploy.yaml 
+  138  kubectl delete -f nginx-service.yaml 
+  139  kubectl get svc
+  140  clear
+  141  ls
+  142  kubectl apply -f nginx-deploy.yaml 
+  143  kubetl apply -f nginx-service.yaml 
+  144  kubectl apply -f nginx-service.yaml 
+  145  kubectl get deploy,rs,pod
+  146  kubectl get svc
+  147  clear
+  148  kubectl get pods
+  149  kubectl describe pod nginx-deploy-854b9d5bdb-ppz6b 
+  150  kubectl get svc
+  151  kubectl describe svc nginx-service
+  152  clear
+  153  kubectl delete -f nginx-service.yaml 
+  154  kubectl delete -f nginx-deploy.yaml 
+  155  kubectl get svc
+  156  kubectl apply -f nginx-service.yaml 
+  157  kubectl get svc -o wide
+  158  ckear
+  159  clear
+  160  kubectl get svc -o wide
+  161  clear
+  162  ls
+  163  vi nginx-service.yaml 
+  164  kubectl run nginx-pod --image=nginx:1.11
+  165  kubectl get pods
+  166  kubectl get svc
+  167  kubectl describe svc nginx-service
+  168  kubectl get pods -o wide
+  169  clear
+  170* kubectl get sv
+  171  kubectl describe svc nginx-service
+  172  cler
+  173  clea
+  174  clear
+  175  kls
+  176  kubectl get pods
+  177  clear
+  178  ls
+  179  cd work/
+  180  ls
+  181  cd kosa-msa-2024-2nd/
+  182  ls
+  183  cd src
+  184  ls
+  185  cd exercise/
+  186  ls
+  187  cd ba
+  188  cd bardroh/
+  189  clear
+  190  ls
+  191  cd day04/
+  192  ls
+  193  history > h2.txt

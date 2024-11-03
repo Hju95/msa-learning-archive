@@ -1,0 +1,5 @@
+Dockerfile로 jupyter 이미지를 생성하고 컨테이너의 /notebooks를 볼륨으로 붙여서 실행한다.
+(https://jupyter.org/)
+이미지는 OS부터 시작한다. 로컬에 이미지를 빌드하고 docker hub에 이미지를 push한다.
+로컬에 생성한 이미지를 지우고 docker hub의 이미지로 실행하여 -v 옵션으로 /notebooks를 볼륨으로 사용하게 한다.
+jupyter에 접속하여 노트북을 만들고, 해당 노트북이 매핑한 서버의 디렉토리에 저장되는 것을 확인한다.
